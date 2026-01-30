@@ -48,9 +48,18 @@ test_y  = test_y.astype(np.float32)
 num_columns = train_X.shape[1]
 
 
+# inputs = keras.Input(shape=(num_columns,))
+# h = keras.layers.Dense(16, activation="relu", name="Hidden")(inputs)
+# outputs = keras.layers.Dense(1, activation="sigmoid", name="Output")(h)
+
 inputs = keras.Input(shape=(num_columns,))
-h = keras.layers.Dense(16, activation="relu", name="Hidden")(inputs)
-outputs = keras.layers.Dense(1, activation="sigmoid", name="Output")(h)
+
+h1 = keras.layers.Dense(16, activation="relu", name="Hidden_1")(inputs)
+h2 = keras.layers.Dense(16, activation="relu", name="Hidden_2")(h1)
+h3 = keras.layers.Dense(16, activation="relu", name="Hidden_3")(h2)
+
+outputs = keras.layers.Dense(1, activation="sigmoid", name="Output")(h3)
+
 
 model = keras.Model(inputs, outputs)
 
